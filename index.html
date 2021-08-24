@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dessner's</title>
+    <style>
+    body{
+    font-size:15px;
+}
+
+button{
+    background:#f9ec3d;
+    border:0;
+    padding:10px 20px;
+}
+
+img{
+    max-width:100%;
+}
+
+/* .wrapper */
+
+.wrapper{
+    display:grid;
+    grid-gap:20px;
+}
+
+.top{
+    display:grid;
+    grid-gap:20px;
+    grid-template-areas:
+    "hero hero cta1"
+    "hero hero cta2"
+}
+
+.hero {
+    grid-area:hero;
+    min-height:400px;
+    background:White url('https://www.cleveland.com/resizer/JO6gRsjLu5vCTaA-Y_B_kcV-7oQ=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/DEO3QK553BDNBEY2EPKUO33WG4.jpg');
+    background-size:cover;
+    background-position:bottom right;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    justify-content:center;
+}
+
+.hero > * {
+    background:var(--yellow);
+    padding:5px;
+}
+
+.cta{
+    background:var(--blue);
+    display:grid;
+    align-items:center;
+    justify-items:center;
+    align-content:center;
+}
+
+.cta p{
+    margin:0;
+}
+
+.cta1{
+    grid-area:cta1;
+}
+
+.cta2{
+    grid-area:cta2;
+}
+
+.price{
+    font-size:60px;
+    font-weight:300;
+}
+
+/* Navigation */
+
+.menu ul{
+    display:grid;
+    grid-gap:10px;
+    padding:0;
+    list-style:none;
+    grid-template-columns:repeat(auto-fit, minmax(100px,1fr));
+}
+
+.menu a{
+    background:var(--yellow);
+    display:block;
+    text-decoration:none;
+    padding:10px;
+    text-align:center;
+    color:var-(--black);
+    text-transform:uppercase;
+    font-size:20px;
+}
+
+[aria-controls="menu-list"]{
+    display:none;   
+}
+
+/*Features  */
+
+.features{
+    display:grid;
+    grid-gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+}
+
+.feature{
+    background:whitesmoke;
+    padding:10px;
+    border:1px solid white;
+    text-align:center;
+    box-shadow: 0  0 4px rgba(0,0,0,0,0.1);
+}
+
+.feature .icon{
+    font-size:50px;
+}
+
+.feature p{
+   color:rgba(214, 37, 37, 0.822);
+}
+
+/* About Section */
+
+.about{
+    background:rgb(8, 170, 182);
+    padding:50px;
+    display:grid;
+    grid-template-columns:400px 1fr;
+    align-items:center;
+
+}
+
+/* Gallery */
+.gallery{
+    display:grid;
+    grid-gap:20px;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.gallery img{
+    width:100%;
+}
+
+.gallery h2{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:1fr, auto 1fr;
+    grid-gap:20px;
+    align-items:center;
+}
+
+.gallery h2:before, .gallery h2:after{
+    display:block;
+    content:'';
+    height:10px;
+    background:linear-gradient(to var(--direction,left), var(--blue,)transparent);
+
+}
+
+.gallery h2:after{
+    --direction:right;
+}
+
+@media (max-width:1000px){
+    .menu{
+        perspective:800px;
+    }
+    
+    [aria-controls="menu-list"]{
+    display:block;
+    margin-bottom:10px;
+    }
+
+    .menu ul{
+    max-height:0;
+    overflow:hidden;
+    transform:rotateX(90deg);
+    transition:all 0.5s;
+}
+
+[aria-expanded="true"] ~ ul{
+    display:grid;
+    max-height:500px;
+    transform:rotateX(0);
+}
+
+[aria-expanded="false"] .close{
+    display:none;
+}
+
+[aria-expanded="true"].open{
+    display:none;
+}
+
+
+@media (max-width:700px){
+    .top{
+        grid-template-areas:
+        "hero hero"
+        "cta1 cta2"
+    }
+
+    /* About */
+    .about{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width:500px){
+    .top{
+        grid-template-areas:
+        "hero"
+        "cta1"
+        "cta2"
+    }
+  }
+
+}
+
+
+    
+  /*
+  Oh Hello!
+
+  These are some base styles so that our tutorial looks good.
+
+  Let's go through the important bits real quick
+*/
+:root {
+    --yellow: #ffc600;
+    --black: #272727;
+  }
+  
+  html {
+    /* border-box box model allows us to add padding and border to our elements without increasing their size */
+    box-sizing: border-box;
+    /* A system font stack so things load nice and quick! */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 900;
+    font-size: 10px;
+    color: var(--black);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+  }
+  
+  /*
+    WAT IS THIS?!
+    We inherit box-sizing: border-box; from our <html> selector
+    Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector
+  */
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    background-image: url("https://wallpaperaccess.com/full/340434.png"),
+      linear-gradient(110deg, #f93d66, #6d47d9);
+    background-size: 340px, auto;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 100px);
+    margin: 50px;
+    /* background: white; */
+    background-attachment: fixed;
+    letter-spacing: -1px;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 5px 0;
+  }
+  /* Each item in our grid will contain numbers */
+  .item {
+    /* We center the contents of these items. You can also do this with flexbox too! */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    font-size: 35px;
+    background-color: var(--yellow); /* best colour */
+  }
+  
+  .item p {
+    margin: 0 0 5px 0;
+  }  
+ </style>
+</head>
+
+<body>
+  <div class="wrapper">
+      <nav class="menu">
+          <button aria-expanded="false" aria-controls="menu-list">
+           <span class="open">☰</span>
+           Menu  
+          </button>
+          <ul id="menu-list">
+              <li>
+                  <a href="">Cold Girl Fever</a>
+              </li>
+              <li>
+                  <a href="">90-Mile Water Wall</a>
+              </li>
+              <li>
+                  <a href="">All the Wine</a>
+              </li>
+              <li>
+                  <a href="">Santa Clara</a>
+              </li>
+              <li>
+                  <a href="">Reserve</a>
+              </li>
+          </ul>
+      </nav>
+      
+      <div class="top">
+        <header class="hero">
+            <h1>Dessner's</h1>
+            <p>Best Seafood This Side of Ohio.</p>
+        </header>
+        <div class="cta cta1">
+            <p class="price">$2.99</p>
+            <p>Cold Girl Fever</p>
+        </div>
+        <div class="cta cta2">
+            <p class="price">$4.99</p>
+            <p>90 Mile Water Wall</p>
+      </div>
+  
+    </div>
+  
+  <section class="features">
+      <div class="feature">
+          <span class="icon">🐟</span>
+          <h3>Cold Girl Fever</h3>
+           <p>Bottle eyes, glassy blue I watch the rain come out of you Sky is white with the flu, I'm terrified of losing you If I go to the sea, I'll bring you down, down with me If I go to the rain, you'll never see me again</p>
+      </div>
+     <div class="feature">
+         <span class="icon">🍺</span>
+         <h3>90-Mile Water Wall</h3>
+         <p>I'm waiting for a ninety-mile water wall To take me out of your home view I'm looking for a trap door trigger To drop me out of your home view</p>
+     </div>
+     <div class="feature">
+         <span class="icon">🍷</span>
+         <h3>All the Wine</h3>
+         <p>I'm a perfect piece of ass Like every Californian So tall I take over the street With high beams shining on my back A wingspan unbelievable I'm a festival, I'm a parade</p>
+     </div>
+     <div class="feature">
+        <span class="icon">🎵</span>
+        <h3>Best Restuarant Inspired by a Rock Band.</h3>
+        <p>You clean yourself to meet A man who isn't me You're putting on a shirt A shirt I'll never see The letter's in your coat And no one's in your head 'Cause you're too smart to remember You're too smart Lucky you.</p>
+     </div>
+  </section>
+
+  <section class="about">
+      <img src="https://hips.hearstapps.com/hmg-prod/images/190307-fish-tacos-112-1553283299.jpg" alt="seafood taco" class="about_mockup">
+      <div class="about_details">
+          <h2>Featured Meal</h2>
+        <p>Voted the Best Delectable Seafood Tacos in the Midwest by Michelin guide.</p>
+        <p>Very Easy to like, harder to stop Loving!</p>
+        <button>Find Out More :) -></button>
+      </div>
+  </section>
+
+  <section class="gallery">
+      <h2>InstaFoodGram</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/The_National_%28Front_Cover%29_2001.png" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/TheNationalSadSongs.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/d/d2/TheNationalAlligator.gif" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/0a/TheNational-Boxer.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/08/Highviolet.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/57/Trouble_Will_Find_Me.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Sleep_Well_Beast.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/03/The_National_-_I_Am_Easy_to_Find.png" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/c/c0/Cherry_Tree_%28EP%29.jpg" alt="">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/43/The_Virginia_EP_Cover.jpg" alt="">
+  </section>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  const navButton = document.querySelector('button[aria-expanded]');
+
+  function toggleNav({target}) {
+  const expanded = target.getAttribute('aria-expanded') === 'true' || false;
+  navButton.setAttribute('aria-expanded', !expanded);
+  }
+
+  navButton.addEventListener('click', toggleNav);
+ </script>
+
+</body>
+</html>
